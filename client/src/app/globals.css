@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Clash Display", "Inter", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  color-scheme: dark;
+}
+
+html,
+body {
+  @apply bg-ink-950 text-white antialiased;
+}
+
+body {
+  background-color: theme("colors.ink.950");
+  background-image:
+    radial-gradient(
+      ellipse 55% 40% at 12% -8%,
+      rgba(124, 77, 255, 0.16),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 45% 35% at 100% 5%,
+      rgba(56, 132, 255, 0.09),
+      transparent 60%
+    ),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 25%);
+  background-attachment: fixed;
+}
+
+/* Lenis adds this class to <html> while a smooth scroll is animating - */
+/* disabling native smooth-scroll avoids the two fighting each other. */
+html.lenis {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+::selection {
+  @apply bg-accent-500/30 text-white;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: theme("colors.ink.600");
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.ink.600");
+}
+
+@layer base {
+  select option {
+    background-color: theme("colors.ink.800");
+    color: #fff;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-white/10 bg-white/[0.03];
+    box-shadow: theme("boxShadow.card");
+  }
+
+  .page-enter {
+    animation: fadeUp 0.45s ease forwards;
+  }
+
+  .bg-dot-grid {
+    background-image: radial-gradient(
+      rgba(255, 255, 255, 0.14) 1px,
+      transparent 1px
+    );
+    background-size: 28px 28px;
+    -webkit-mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 30%,
+      black 40%,
+      transparent 90%
+    );
+    mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 30%,
+      black 40%,
+      transparent 90%
+    );
+  }
+
+  .animate-float {
+    animation: float 4.5s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
